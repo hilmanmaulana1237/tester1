@@ -98,10 +98,6 @@ ensure_cmd git
 ensure_cmd "${PHP_BIN}"
 ensure_cmd "${COMPOSER_BIN}"
 
-if [[ "${RUN_NPM_BUILD}" == "1" ]]; then
-    ensure_cmd "${NPM_BIN}"
-fi
-
 if command -v flock >/dev/null 2>&1; then
     exec 9>"${LOCK_FILE}"
     if ! flock -n 9; then
@@ -133,9 +129,13 @@ log "Installing PHP dependencies"
 "${COMPOSER_BIN}" install --no-dev --prefer-dist --optimize-autoloader --no-interaction
 
 if [[ "${RUN_NPM_BUILD}" == "1" && -f package.json ]]; then
-    log "Installing Node dependencies and building assets"
-    "${NPM_BIN}" ci --no-audit --no-fund
-    "${NPM_BIN}" run build
+    if command -v "${NPM_BIN}" >/dev/null 2>&1; then
+        log "Installing Node dependencies and building assets"
+        "${NPM_BIN}" ci --no-audit --no-fund
+        "${NPM_BIN}" run build
+    else
+        log "npm not found, skipping frontend build"
+    fi
 else
     log "Skipping frontend build"
 fi
