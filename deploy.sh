@@ -98,6 +98,18 @@ ensure_cmd git
 ensure_cmd "${PHP_BIN}"
 ensure_cmd "${COMPOSER_BIN}"
 
+php_version_output="$("${PHP_BIN}" -r 'echo PHP_VERSION;' 2>/dev/null || true)"
+php_major_minor="$(printf '%s\n' "${php_version_output}" | awk -F. '{print $1"."$2}')"
+if [[ -n "${php_major_minor}" ]]; then
+    if ! awk -v v="${php_major_minor}" 'BEGIN { exit !(v >= 8.2) }'; then
+        fail "PHP ${php_version_output} detected, but this app needs PHP 8.2+ (set PHP_BIN to a 8.2/8.3 binary or upgrade the server)"
+    fi
+fi
+
+if ! "${PHP_BIN}" -m 2>/dev/null | grep -qi '^zip$'; then
+    fail "PHP ext-zip is missing for ${PHP_BIN}. Install/enable zip, then rerun deploy."
+fi
+
 if command -v flock >/dev/null 2>&1; then
     exec 9>"${LOCK_FILE}"
     if ! flock -n 9; then
