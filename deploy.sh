@@ -24,6 +24,8 @@ RUN_QUEUE_RESTART="${RUN_QUEUE_RESTART:-1}"
 PHP_FPM_SERVICE="${PHP_FPM_SERVICE:-php8.3-fpm}"
 WEB_SERVER_SERVICE="${WEB_SERVER_SERVICE:-nginx}"
 HEALTHCHECK_URL="${HEALTHCHECK_URL:-}"
+INSTALL_APT_DEPS="${INSTALL_APT_DEPS:-1}"
+INSTALL_NODEJS="${INSTALL_NODEJS:-0}"
 
 LOCK_FILE="/tmp/baru-deploy.lock"
 
@@ -39,6 +41,8 @@ Optional env vars:
   APP_DIR=/var/www/baru
   WEB_USER=www-data
   WEB_GROUP=www-data
+    INSTALL_APT_DEPS=1
+    INSTALL_NODEJS=0
   PHP_FPM_SERVICE=php8.3-fpm
   WEB_SERVER_SERVICE=nginx
   HEALTHCHECK_URL=https://your-domain.com/up
@@ -69,6 +73,46 @@ run_privileged() {
     fi
 }
 
+is_linux_debian_family() {
+    [[ -r /etc/os-release ]] || return 1
+    . /etc/os-release
+    [[ "${ID:-}" == "ubuntu" || "${ID_LIKE:-}" == *"debian"* ]]
+}
+
+install_apt_dependencies() {
+    if [[ "${INSTALL_APT_DEPS}" != "1" ]]; then
+        log "Skipping apt bootstrap"
+        return 0
+    fi
+
+    if ! is_linux_debian_family; then
+        log "Non-Debian/Ubuntu system detected, skipping apt bootstrap"
+        return 0
+    fi
+
+    log "Installing system dependencies via apt"
+    run_privileged apt-get update
+    run_privileged apt-get install -y software-properties-common ca-certificates curl gnupg lsb-release unzip git
+
+    if ! command -v php8.2 >/dev/null 2>&1; then
+        if ! grep -Rqs "ondrej/php" /etc/apt/sources.list /etc/apt/sources.list.d 2>/dev/null; then
+            run_privileged add-apt-repository ppa:ondrej/php -y
+            run_privileged apt-get update
+        fi
+        run_privileged apt-get install -y php8.2 php8.2-cli php8.2-fpm php8.2-common php8.2-zip php8.2-mbstring php8.2-xml php8.2-curl php8.2-mysql php8.2-gd php8.2-bcmath php8.2-intl
+    fi
+
+    if ! command -v composer >/dev/null 2>&1; then
+        run_privileged apt-get install -y composer
+    fi
+
+    if [[ "${INSTALL_NODEJS}" == "1" ]]; then
+        if ! command -v node >/dev/null 2>&1 || ! command -v npm >/dev/null 2>&1; then
+            run_privileged apt-get install -y nodejs npm
+        fi
+    fi
+}
+
 ensure_cmd() {
     command -v "$1" >/dev/null 2>&1 || fail "Command not found: $1"
 }
@@ -95,6 +139,17 @@ on_error() {
 trap on_error ERR
 
 ensure_cmd git
+
+install_apt_dependencies
+
+if [[ "${PHP_BIN}" == "php" && -x /usr/bin/php8.2 ]]; then
+    PHP_BIN="php8.2"
+fi
+
+if [[ "${COMPOSER_BIN}" == "composer" && ! -x "$(command -v composer 2>/dev/null || true)" && -x /usr/bin/composer ]]; then
+    COMPOSER_BIN="/usr/bin/composer"
+fi
+
 ensure_cmd "${PHP_BIN}"
 ensure_cmd "${COMPOSER_BIN}"
 
