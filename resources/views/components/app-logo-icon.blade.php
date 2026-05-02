@@ -1,0 +1,1 @@
+<img src="{{ asset('favicon.svg') }}" {{ $attributes }} alt="{{ config('app.name') }}" />

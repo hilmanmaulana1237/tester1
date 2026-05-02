@@ -1,0 +1,105 @@
+@import 'tailwindcss';
+@import '../../vendor/livewire/flux/dist/flux.css';
+
+@source '../views';
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../vendor/livewire/flux-pro/stubs/**/*.blade.php';
+@source '../../vendor/livewire/flux/stubs/**/*.blade.php';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --color-accent: #007942;
+    --color-accent-content: #007942;
+    --color-accent-foreground: var(--color-white);
+    --color-green-50: #f0fdf4;
+    --color-green-600: #007942;
+    --color-green-700: #006635;
+    --color-green-800: #005028;
+}
+
+@layer theme {
+    .dark {
+        --color-accent: #00a854;
+        --color-accent-content: #00a854;
+        --color-accent-foreground: var(--color-zinc-900);
+    }
+}
+
+@layer base {
+
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-gray-200, currentColor);
+    }
+
+    /* Alpine.js cloak */
+    [x-cloak] {
+        display: none !important;
+    }
+}
+
+[data-flux-field]:not(ui-radio, ui-checkbox) {
+    @apply grid gap-2;
+}
+
+[data-flux-label] {
+    @apply  !mb-0 !leading-tight;
+}
+
+input:focus[data-flux-control],
+textarea:focus[data-flux-control],
+select:focus[data-flux-control] {
+    @apply outline-hidden ring-2 ring-accent ring-offset-2 ring-offset-accent-foreground;
+}
+
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .line-clamp-3 {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* Fix sidebar flash on mobile */
+        @media (max-width: 1023px) {
+            flux-sidebar:not([data-flux-sidebar-open]) {
+                opacity: 0;
+                pointer-events: none;
+            }
+            
+            flux-sidebar {
+                transition: opacity 0.15s ease-in-out;
+            }
+            
+            flux-sidebar[data-flux-sidebar-open] {
+                opacity: 1;
+                pointer-events: auto;
+            }
+        }
+
+        /* Swipe animation for task cards */
+        @keyframes bounce-horizontal {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            50% {
+                transform: translateX(-4px);
+            }
+        }
+
+        .animate-bounce-horizontal {
+            animation: bounce-horizontal 2s infinite;
+        }
+
+/* \[:where(&)\]:size-4 {
+    @apply size-4;
+} */

@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<!-- saved from url=(0040)http://localhost:8000/pages/panduan-task -->
+<html lang="id" class="dark"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+
+
+
+
+
+
+
+
+
+
+
+<link href="./CuanInstan_files/css" rel="stylesheet">
+
+
+
+<script type="module" src="./CuanInstan_files/client" data-navigate-track="reload"></script><link rel="stylesheet" href="./CuanInstan_files/app.css" data-navigate-track="reload"><script type="module" src="./CuanInstan_files/app.js.download" data-navigate-track="reload"></script><style>
+    :root.dark {
+        color-scheme: dark;
+    }
+</style>
+<script>
+    window.Flux = {
+        applyAppearance (appearance) {
+            let applyDark = () => document.documentElement.classList.add('dark')
+            let applyLight = () => document.documentElement.classList.remove('dark')
+
+            if (appearance === 'system') {
+                let media = window.matchMedia('(prefers-color-scheme: dark)')
+
+                window.localStorage.removeItem('flux.appearance')
+
+                media.matches ? applyDark() : applyLight()
+            } else if (appearance === 'dark') {
+                window.localStorage.setItem('flux.appearance', 'dark')
+
+                applyDark()
+            } else if (appearance === 'light') {
+                window.localStorage.setItem('flux.appearance', 'light')
+
+                applyLight()
+            }
+        }
+    }
+
+    window.Flux.applyAppearance(window.localStorage.getItem('flux.appearance') || 'system')
+</script>
+<!-- Livewire Scripts -->
+<script src="./CuanInstan_files/livewire.js.download" data-csrf="YkhveYyMKwdA09eXtc5sTBI7iojnTjunknRJLiGP" data-update-uri="/livewire/update" data-navigate-once="true"></script><style>/* Make clicks pass-through */
+
+    #nprogress {
+      pointer-events: none;
+    }
+
+    #nprogress .bar {
+      background: var(--livewire-progress-bar-color, #29d);
+
+      position: fixed;
+      z-index: 1031;
+      top: 0;
+      left: 0;
+
+      width: 100%;
+      height: 2px;
+    }
+
+    /* Fancy blur effect */
+    #nprogress .peg {
+      display: block;
+      position: absolute;
+      right: 0px;
+      width: 100px;
+      height: 100%;
+      box-shadow: 0 0 10px var(--livewire-progress-bar-color, #29d), 0 0 5px var(--livewire-progress-bar-color, #29d);
+      opacity: 1.0;
+
+      -webkit-transform: rotate(3deg) translate(0px, -4px);
+          -ms-transform: rotate(3deg) translate(0px, -4px);
+              transform: rotate(3deg) translate(0px, -4px);
+    }
+
+    /* Remove these to get rid of the spinner */
+    #nprogress .spinner {
+      display: block;
+      position: fixed;
+      z-index: 1031;
+      top: 15px;
+      right: 15px;
+    }
+
+    #nprogress .spinner-icon {
+      width: 18px;
+      height: 18px;
+      box-sizing: border-box;
+
+      border: solid 2px transparent;
+      border-top-color: var(--livewire-progress-bar-color, #29d);
+      border-left-color: var(--livewire-progress-bar-color, #29d);
+      border-radius: 50%;
+
+      -webkit-animation: nprogress-spinner 400ms linear infinite;
+              animation: nprogress-spinner 400ms linear infinite;
+    }
+
+    .nprogress-custom-parent {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .nprogress-custom-parent #nprogress .spinner,
+    .nprogress-custom-parent #nprogress .bar {
+      position: absolute;
+    }
+
+    @-webkit-keyframes nprogress-spinner {
+      0%   { -webkit-transform: rotate(0deg); }
+      100% { -webkit-transform: rotate(360deg); }
+    }
+    @keyframes nprogress-spinner {
+      0%   { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    </style>
+    
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="csrf-token" content="YkhveYyMKwdA09eXtc5sTBI7iojnTjunknRJLiGP"><title>CuanInstan</title><link rel="icon" href="http://localhost:8000/favicon.ico" sizes="any"><link rel="icon" href="http://localhost:8000/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="http://localhost:8000/apple-touch-icon.png"><link rel="preconnect" href="https://fonts.bunny.net/"><meta name="csrf-token" content="YkhveYyMKwdA09eXtc5sTBI7iojnTjunknRJLiGP"></head>
+
+    <body class="min-h-screen bg-white dark:bg-zinc-800">
+        <div class="z-10 fixed inset-0 bg-black/10 hidden [[data-show-stashed-sidebar]_&amp;]:block lg:[[data-show-stashed-sidebar]_&amp;]:hidden" x-data="" x-on:click="document.body.removeAttribute(&#39;data-show-stashed-sidebar&#39;)"></div>
+
+<div class="[grid-area:sidebar] z-1 flex flex-col gap-4 [:where(&amp;)]:w-64 p-4 max-lg:data-mobile-cloak:hidden [[data-show-stashed-sidebar]_&amp;]:translate-x-0! lg:translate-x-0! z-20! data-stashed:start-0! data-stashed:fixed! data-stashed:top-0! data-stashed:min-h-dvh! data-stashed:max-h-dvh! max-h-dvh overflow-y-auto overscroll-contain border-e border-white bg-white dark:border-zinc-700 dark:bg-zinc-900 -translate-x-full rtl:translate-x-full transition-transform" x-bind:data-stashed="! screenLg" x-resize.document="screenLg = window.innerWidth &gt;= 1024" x-init="$el.classList.add(&#39;-translate-x-full&#39;, &#39;rtl:translate-x-full&#39;); $el.removeAttribute(&#39;data-mobile-cloak&#39;); $el.classList.add(&#39;transition-transform&#39;)" x-bind:style="{ position: &#39;sticky&#39;, top: $el.offsetTop + &#39;px&#39;, &#39;max-height&#39;: &#39;calc(100dvh - &#39; + $el.offsetTop + &#39;px)&#39; }" x-data="{ screenLg: window.innerWidth &gt;= 1024 }" data-flux-sidebar="" style="position: sticky; top: 0px; max-height: calc(0px + 100dvh);">
+    <button type="button" class="relative items-center font-medium justify-center gap-2 whitespace-nowrap disabled:opacity-75 dark:disabled:opacity-75 disabled:cursor-default disabled:pointer-events-none h-10 text-sm rounded-lg w-10 inline-flex  bg-transparent hover:bg-zinc-800/5 dark:hover:bg-white/15 text-zinc-500 hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-white      shrink-0 lg:hidden" data-flux-button="data-flux-button" x-data="" x-on:click="document.body.hasAttribute(&#39;data-show-stashed-sidebar&#39;) ? document.body.removeAttribute(&#39;data-show-stashed-sidebar&#39;) : document.body.setAttribute(&#39;data-show-stashed-sidebar&#39;, &#39;&#39;)" data-flux-sidebar-toggle="data-flux-sidebar-toggle" aria-label="Toggle sidebar">
+        <svg class="shrink-0 [:where(&amp;)]:size-5" data-flux-icon="" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+  <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z"></path>
+</svg>
+    </button>
+
+            <a href="http://localhost:8000/dashboard" class="me-5 flex items-center space-x-2 rtl:space-x-reverse" wire:navigate="">
+                <div class="flex aspect-square size-10 items-center justify-center">
+    <img src="./CuanInstan_files/logo.svg" alt="CuanInstan Logo" class="size-8">
+</div>
+<div class="ms-1 grid flex-1 text-start text-md">
+    <span class="mb-0.5 truncate leading-tight font-semibold">CuanInstan</span>
+</div>
+            </a>
+
+            <nav class="flex flex-col overflow-visible min-h-auto" data-flux-navlist="">
+    <div class="block space-y-[2px] grid">
+    <div class="px-1 py-2">
+        <div class="text-xs leading-none text-zinc-400">Platform</div>
+    </div>
+
+    <div>
+        <a href="http://localhost:8000/dashboard" class="h-10 lg:h-8 relative flex items-center gap-3 rounded-lg  py-0 text-start w-full px-3 my-px text-zinc-500 dark:text-white/80 data-current:text-(--color-accent-content) hover:data-current:text-(--color-accent-content) data-current:bg-white dark:data-current:bg-white/[7%] data-current:border data-current:border-zinc-200 dark:data-current:border-transparent hover:text-zinc-800 dark:hover:text-white dark:hover:bg-white/[7%] hover:bg-zinc-800/5  border border-transparent" data-flux-navlist-item="data-flux-navlist-item" wire:navigate="">
+        <div class="relative">
+                            <svg class="shrink-0 [:where(&amp;)]:size-6 size-4!" data-flux-icon="" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+  <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"></path>
+</svg>
+
+                    
+                    </div>
+    
+            <div class="flex-1 text-sm font-medium leading-none whitespace-nowrap [[data-nav-footer]_&amp;]:hidden [[data-nav-sidebar]_[data-nav-footer]_&amp;]:block" data-content="">Dashboard</div>
+    </a>
+    </div>
+</div>
+
+
+                <ui-disclosure class="group/disclosure grid" open="" data-flux-navlist-group="" data-open="">
+    <button type="button" class="group/disclosure-button mb-[2px] flex h-10 w-full items-center rounded-lg text-zinc-500 hover:bg-zinc-800/5 hover:text-zinc-800 lg:h-8 dark:text-white/80 dark:hover:bg-white/[7%] dark:hover:text-white" aria-controls="lofi-disclosure-b75c9b4e1a026" aria-expanded="true" data-open="">
+        <div class="ps-3 pe-4">
+            <svg class="shrink-0 [:where(&amp;)]:size-6 hidden size-3! group-data-open/disclosure-button:block" data-flux-icon="" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+  <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"></path>
+</svg>
+
+                    <svg class="shrink-0 [:where(&amp;)]:size-6 block size-3! group-data-open/disclosure-button:hidden" data-flux-icon="" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+  <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"></path>
+</svg>
+
+                </div>
+
+        <span class="text-sm font-medium leading-none">Task Management</span>
+    </button>
+
+    <div class="relative hidden space-y-[2px] ps-7 data-open:block" id="lofi-disclosure-b75c9b4e1a026" data-open="">
+        <div class="absolute inset-y-[3px] start-0 ms-4 w-px bg-zinc-200 dark:bg-white/30"></div>
+
+        <a href="http://localhost:8000/user/dashboard" class="h-10 lg:h-8 relative flex items-center gap-3 rounded-lg  py-0 text-start w-full px-3 my-px text-zinc-500 dark:text-white/80 data-current:text-(--color-accent-content) hover:data-current:text-(--color-accent-content) data-current:bg-white dark:data-current:bg-white/[7%] data-current:border data-current:border-zinc-200 dark:data-current:border-transparent hover:text-zinc-800 dark:hover:text-white dark:hover:bg-white/[7%] hover:bg-zinc-800/5  border border-transparent" data-flux-navlist-item="data-flux-navlist-item" wire:navigate="">
+        <div class="relative">
+                            <svg class="shrink-0 [:where(&amp;)]:size-6 size-4!" data-flux-icon="" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25ZM6.75 12h.008v.008H6.75V12Zm0 3h.008v.008H6.75V15Zm0 3h.008v.008H6.75V18Z"></path>
+</svg>
+
+                    
+                    </div>
+    
+            <div class="flex-1 text-sm font-medium leading-none whitespace-nowrap [[data-nav-footer]_&amp;]:hidden [[data-nav-sidebar]_[data-nav-footer]_&amp;]:block" data-content="">Task</div>
+    
+    
+            <span class="text-xs font-medium rounded-sm px-1 py-0.5 text-zinc-700 dark:text-zinc-200 bg-zinc-400/15 dark:bg-zinc-400/40">16</span>
+    </a>
+                    <a href="http://localhost:8000/user/my-tasks" class="h-10 lg:h-8 relative flex items-center gap-3 rounded-lg  py-0 text-start w-full px-3 my-px text-zinc-500 dark:text-white/80 data-current:text-(--color-accent-content) hover:data-current:text-(--color-accent-content) data-current:bg-white dark:data-current:bg-white/[7%] data-current:border data-current:border-zinc-200 dark:data-current:border-transparent hover:text-zinc-800 dark:hover:text-white dark:hover:bg-white/[7%] hover:bg-zinc-800/5  border border-transparent" data-flux-navlist-item="data-flux-navlist-item" wire:navigate="">
+        <div class="relative">
+                            <svg class="shrink-0 [:where(&amp;)]:size-6 size-4!" data-flux-icon="" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M11.35 3.836c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m8.9-4.414c.376.023.75.05 1.124.08 1.131.094 1.976 1.057 1.976 2.192V16.5A2.25 2.25 0 0 1 18 18.75h-2.25m-7.5-10.5H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V18.75m-7.5-10.5h6.375c.621 0 1.125.504 1.125 1.125v9.375m-8.25-3 1.5 1.5 3-3.75"></path>
+</svg>
+
+                    
+                    </div>
+    
+            <div class="flex-1 text-sm font-medium leading-none whitespace-nowrap [[data-nav-footer]_&amp;]:hidden [[data-nav-sidebar]_[data-nav-footer]_&amp;]:block" data-content="">My Tasks</div>
+    
+    
+            <span class="text-xs font-medium rounded-sm px-1 py-0.5 text-zinc-700 dark:text-zinc-200 bg-zinc-400/15 dark:bg-zinc-400/40">1</span>
+    </a>
+                    <a href="http://localhost:8000/user/history" class="h-10 lg:h-8 relative flex items-center gap-3 rounded-lg  py-0 text-start w-full px-3 my-px text-zinc-500 dark:text-white/80 data-current:text-(--color-accent-content) hover:data-current:text-(--color-accent-content) data-current:bg-white dark:data-current:bg-white/[7%] data-current:border data-current:border-zinc-200 dark:data-current:border-transparent hover:text-zinc-800 dark:hover:text-white dark:hover:bg-white/[7%] hover:bg-zinc-800/5  border border-transparent" data-flux-navlist-item="data-flux-navlist-item" wire:navigate="">
+        <div class="relative">
+                            <svg class="shrink-0 [:where(&amp;)]:size-6 size-4!" data-flux-icon="" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path>
+</svg>
+
+                    
+                    </div>
+    
+            <div class="flex-1 text-sm font-medium leading-none whitespace-nowrap [[data-nav-footer]_&amp;]:hidden [[data-nav-sidebar]_[data-nav-footer]_&amp;]:block" data-content="">History</div>
+    </a>
+    </div>
+</ui-disclosure>
+
+
+                <ui-disclosure class="group/disclosure grid" open="" data-flux-navlist-group="" data-open="">
+    <button type="button" class="group/disclosure-button mb-[2px] flex h-10 w-full items-center rounded-lg text-zinc-500 hover:bg-zinc-800/5 hover:text-zinc-800 lg:h-8 dark:text-white/80 dark:hover:bg-white/[7%] dark:hover:text-white" aria-controls="lofi-disclosure-e95c99d18b59e" aria-expanded="true" data-open="">
+        <div class="ps-3 pe-4">
+            <svg class="shrink-0 [:where(&amp;)]:size-6 hidden size-3! group-data-open/disclosure-button:block" data-flux-icon="" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+  <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"></path>
+</svg>
+
+                    <svg class="shrink-0 [:where(&amp;)]:size-6 block size-3! group-data-open/disclosure-button:hidden" data-flux-icon="" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+  <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"></path>
+</svg>
+
+                </div>
+
+        <span class="text-sm font-medium leading-none">Aturan dan Tips</span>
+    </button>
+
+    <div class="relative hidden space-y-[2px] ps-7 data-open:block" id="lofi-disclosure-e95c99d18b59e" data-open="">
+        <div class="absolute inset-y-[3px] start-0 ms-4 w-px bg-zinc-200 dark:bg-white/30"></div>
+
+        <a href="http://localhost:8000/pages/panduan-task" data-current="data-current" class="h-10 lg:h-8 relative flex items-center gap-3 rounded-lg  py-0 text-start w-full px-3 my-px text-zinc-500 dark:text-white/80 data-current:text-(--color-accent-content) hover:data-current:text-(--color-accent-content) data-current:bg-white dark:data-current:bg-white/[7%] data-current:border data-current:border-zinc-200 dark:data-current:border-transparent hover:text-zinc-800 dark:hover:text-white dark:hover:bg-white/[7%] hover:bg-zinc-800/5  border border-transparent" data-flux-navlist-item="data-flux-navlist-item" wire:navigate="">
+        <div class="relative">
+                            <svg class="shrink-0 [:where(&amp;)]:size-6 size-4!" data-flux-icon="" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"></path>
+</svg>
+
+                    
+                    </div>
+    
+            <div class="flex-1 text-sm font-medium leading-none whitespace-nowrap [[data-nav-footer]_&amp;]:hidden [[data-nav-sidebar]_[data-nav-footer]_&amp;]:block" data-content="">Panduan Task</div>
+    </a>
+                    <a href="http://localhost:8000/pages/tips-sukses" class="h-10 lg:h-8 relative flex items-center gap-3 rounded-lg  py-0 text-start w-full px-3 my-px text-zinc-500 dark:text-white/80 data-current:text-(--color-accent-content) hover:data-current:text-(--color-accent-content) data-current:bg-white dark:data-current:bg-white/[7%] data-current:border data-current:border-zinc-200 dark:data-current:border-transparent hover:text-zinc-800 dark:hover:text-white dark:hover:bg-white/[7%] hover:bg-zinc-800/5  border border-transparent" data-flux-navlist-item="data-flux-navlist-item" wire:navigate="">
+        <div class="relative">
+                            <svg class="shrink-0 [:where(&amp;)]:size-6 size-4!" data-flux-icon="" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.517 0c.85.493 1.509 1.333 1.509 2.316V18"></path>
+</svg>
+
+                    
+                    </div>
+    
+            <div class="flex-1 text-sm font-medium leading-none whitespace-nowrap [[data-nav-footer]_&amp;]:hidden [[data-nav-sidebar]_[data-nav-footer]_&amp;]:block" data-content="">Tips Sukses</div>
+    </a>
+                    <a href="http://localhost:8000/pages/faq" class="h-10 lg:h-8 relative flex items-center gap-3 rounded-lg  py-0 text-start w-full px-3 my-px text-zinc-500 dark:text-white/80 data-current:text-(--color-accent-content) hover:data-current:text-(--color-accent-content) data-current:bg-white dark:data-current:bg-white/[7%] data-current:border data-current:border-zinc-200 dark:data-current:border-transparent hover:text-zinc-800 dark:hover:text-white dark:hover:bg-white/[7%] hover:bg-zinc-800/5  border border-transparent" data-flux-navlist-item="data-flux-navlist-item" wire:navigate="">
+        <div class="relative">
+                            <svg class="shrink-0 [:where(&amp;)]:size-6 size-4!" data-flux-icon="" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z"></path>
+</svg>
+
+                    
+                    </div>
+    
+            <div class="flex-1 text-sm font-medium leading-none whitespace-nowrap [[data-nav-footer]_&amp;]:hidden [[data-nav-sidebar]_[data-nav-footer]_&amp;]:block" data-content="">FAQ</div>
+    </a>
+    </div>
+</ui-disclosure>
+</nav>
+
+            <div class="flex-1" data-flux-spacer=""></div>
+
+            <!-- Dark/Light Mode Toggle - Desktop (in sidebar) -->
+            <div class="hidden lg:block mb-4 px-2" x-data="">
+                <button @click="$flux.appearance = $flux.appearance === &#39;dark&#39; ? &#39;light&#39; : &#39;dark&#39;" class="w-full flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-lg transition-colors text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-zinc-900 dark:hover:text-zinc-100">
+                    <!-- Sun icon (shown in dark mode) -->
+                    <svg x-show="$flux.appearance === &#39;dark&#39;" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="display: none;">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                    </svg>
+                    <!-- Moon icon (shown in light mode) -->
+                    <svg x-show="$flux.appearance !== &#39;dark&#39;" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                    </svg>
+                    <span x-text="$flux.appearance === &#39;dark&#39; ? &#39;Light Mode&#39; : &#39;Dark Mode&#39;">Dark Mode</span>
+                </button>
+            </div>
+
+                        <!-- Desktop User Menu -->
+            <ui-dropdown position="bottom start" class="hidden lg:block" data-flux-dropdown="">
+    <button type="button" class="group flex items-center rounded-lg has-data-[circle=true]:rounded-full [ui-dropdown&gt;&amp;]:w-full p-1 hover:bg-zinc-800/5 dark:hover:bg-white/10" data-flux-profile="" aria-haspopup="true" aria-controls="lofi-dropdown-4aac7a2958af18" aria-expanded="false">
+    <div class="shrink-0">
+                    <div data-flux-avatar="data-flux-avatar" data-slot="avatar" data-size="sm" class="[:where(&amp;)]:size-8 [:where(&amp;)]:text-sm [--avatar-radius:var(--radius-md)] relative flex-none isolate flex items-center justify-center [:where(&amp;)]:font-medium rounded-[var(--avatar-radius)] [:where(&amp;)]:bg-zinc-200 [:where(&amp;)]:dark:bg-zinc-600 [:where(&amp;)]:text-zinc-800 [:where(&amp;)]:dark:text-white  after:absolute after:inset-0 after:inset-ring-[1px] after:inset-ring-black/7 dark:after:inset-ring-white/10 after:rounded-md">
+        <span class="select-none">HN</span>
+    </div>
+            </div>
+
+            <span class="mx-2 text-sm text-zinc-500 dark:text-white/80 group-hover:text-zinc-800 dark:group-hover:text-white font-medium truncate">
+            Helmy Noorhakim
+        </span>
+    
+            <div class="shrink-0 ms-auto size-8 flex justify-center items-center">
+            <svg class="shrink-0 [:where(&amp;)]:size-4 text-zinc-400 dark:text-white/80 group-hover:text-zinc-800 dark:group-hover:text-white" data-flux-icon="" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-slot="icon">
+    <path d="m7 15 5 5 5-5"></path>
+    <path d="m7 9 5-5 5 5"></path>
+</svg>
+        </div>
+    </button>
+
+                <ui-menu class="[:where(&amp;)]:min-w-48 p-[.3125rem] rounded-lg shadow-xs border border-zinc-200 dark:border-zinc-600 bg-white dark:bg-zinc-700 focus:outline-hidden w-[220px]" popover="manual" data-flux-menu="" id="lofi-dropdown-4aac7a2958af18" role="menu" tabindex="-1">
+    <ui-menu-radio-group data-flux-menu-radio-group="" role="group">
+    <div class="p-0 text-sm font-normal">
+                            <div class="flex items-center gap-2 px-1 py-1.5 text-start text-sm">
+                                <span class="relative flex h-8 w-8 shrink-0 overflow-hidden rounded-lg">
+                                    <span class="flex h-full w-full items-center justify-center rounded-lg bg-neutral-200 text-black dark:bg-neutral-700 dark:text-white">
+                                        HN
+                                    </span>
+                                </span>
+
+                                <div class="grid flex-1 text-start text-sm leading-tight">
+                                    <span class="truncate font-semibold">Helmy Noorhakim</span>
+                                    <span class="truncate text-xs">test2@gmail.com</span>
+                                </div>
+                            </div>
+                        </div>
+</ui-menu-radio-group>
+
+                    <div class="-mx-[.3125rem] my-[.3125rem] h-px" data-flux-menu-separator="">
+    <div data-orientation="horizontal" role="none" class="border-0 [print-color-adjust:exact] bg-zinc-800/15 dark:bg-white/20 h-px w-full dark:bg-zinc-600!" data-flux-separator=""></div>
+</div>
+
+                    <ui-menu-radio-group data-flux-menu-radio-group="" role="group">
+    <a href="http://localhost:8000/settings/profile" class="flex items-center px-2 py-1.5 w-full focus:outline-hidden rounded-md text-start text-sm font-medium [&amp;[disabled]]:opacity-50 text-zinc-800 data-active:bg-zinc-50 dark:text-white dark:data-active:bg-zinc-600 **:data-flux-menu-item-icon:text-zinc-400 dark:**:data-flux-menu-item-icon:text-white/60 [&amp;[data-active]_[data-flux-menu-item-icon]]:text-current" data-flux-menu-item="data-flux-menu-item" data-flux-menu-item-has-icon="data-flux-menu-item-has-icon" wire:navigate="" id="lofi-menu-item-d5b5d4d8476148" role="menuitem" tabindex="-1">
+        <svg class="shrink-0 [:where(&amp;)]:size-5 me-2" data-flux-menu-item-icon="data-flux-menu-item-icon" data-flux-icon="" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+  <path d="M13.024 9.25c.47 0 .827-.433.637-.863a4 4 0 0 0-4.094-2.364c-.468.05-.665.576-.43.984l1.08 1.868a.75.75 0 0 0 .649.375h2.158ZM7.84 7.758c-.236-.408-.79-.5-1.068-.12A3.982 3.982 0 0 0 6 10c0 .884.287 1.7.772 2.363.278.38.832.287 1.068-.12l1.078-1.868a.75.75 0 0 0 0-.75L7.839 7.758ZM9.138 12.993c-.235.408-.039.934.43.984a4 4 0 0 0 4.094-2.364c.19-.43-.168-.863-.638-.863h-2.158a.75.75 0 0 0-.65.375l-1.078 1.868Z"></path>
+  <path fill-rule="evenodd" d="m14.13 4.347.644-1.117a.75.75 0 0 0-1.299-.75l-.644 1.116a6.954 6.954 0 0 0-2.081-.556V1.75a.75.75 0 0 0-1.5 0v1.29a6.954 6.954 0 0 0-2.081.556L6.525 2.48a.75.75 0 1 0-1.3.75l.645 1.117A7.04 7.04 0 0 0 4.347 5.87L3.23 5.225a.75.75 0 1 0-.75 1.3l1.116.644A6.954 6.954 0 0 0 3.04 9.25H1.75a.75.75 0 0 0 0 1.5h1.29c.078.733.27 1.433.556 2.081l-1.116.645a.75.75 0 1 0 .75 1.298l1.117-.644a7.04 7.04 0 0 0 1.523 1.523l-.645 1.117a.75.75 0 1 0 1.3.75l.644-1.116a6.954 6.954 0 0 0 2.081.556v1.29a.75.75 0 0 0 1.5 0v-1.29a6.954 6.954 0 0 0 2.081-.556l.645 1.116a.75.75 0 0 0 1.299-.75l-.645-1.117a7.042 7.042 0 0 0 1.523-1.523l1.117.644a.75.75 0 0 0 .75-1.298l-1.116-.645a6.954 6.954 0 0 0 .556-2.081h1.29a.75.75 0 0 0 0-1.5h-1.29a6.954 6.954 0 0 0-.556-2.081l1.116-.644a.75.75 0 0 0-.75-1.3l-1.117.645a7.04 7.04 0 0 0-1.524-1.523ZM10 4.5a5.475 5.475 0 0 0-2.781.754A5.527 5.527 0 0 0 5.22 7.277 5.475 5.475 0 0 0 4.5 10a5.475 5.475 0 0 0 .752 2.777 5.527 5.527 0 0 0 2.028 2.004c.802.458 1.73.719 2.72.719a5.474 5.474 0 0 0 2.78-.753 5.527 5.527 0 0 0 2.001-2.027c.458-.802.719-1.73.719-2.72a5.475 5.475 0 0 0-.753-2.78 5.528 5.528 0 0 0-2.028-2.002A5.475 5.475 0 0 0 10 4.5Z" clip-rule="evenodd"></path>
+</svg>
+
+            
+    Settings
+    </a>
+</ui-menu-radio-group>
+
+                    <div class="-mx-[.3125rem] my-[.3125rem] h-px" data-flux-menu-separator="">
+    <div data-orientation="horizontal" role="none" class="border-0 [print-color-adjust:exact] bg-zinc-800/15 dark:bg-white/20 h-px w-full dark:bg-zinc-600!" data-flux-separator=""></div>
+</div>
+
+                    <form method="POST" action="http://localhost:8000/logout" class="w-full">
+                        <input type="hidden" name="_token" value="YkhveYyMKwdA09eXtc5sTBI7iojnTjunknRJLiGP" autocomplete="off">                        <button type="submit" class="flex items-center px-2 py-1.5 w-full focus:outline-hidden rounded-md text-start text-sm font-medium [&amp;[disabled]]:opacity-50 text-zinc-800 data-active:bg-zinc-50 dark:text-white dark:data-active:bg-zinc-600 **:data-flux-menu-item-icon:text-zinc-400 dark:**:data-flux-menu-item-icon:text-white/60 [&amp;[data-active]_[data-flux-menu-item-icon]]:text-current w-full" data-flux-menu-item="data-flux-menu-item" data-flux-menu-item-has-icon="data-flux-menu-item-has-icon" id="lofi-menu-item-8b7a3d5beb70a" role="menuitem" tabindex="-1">
+        <svg class="shrink-0 [:where(&amp;)]:size-5 me-2" data-flux-menu-item-icon="data-flux-menu-item-icon" data-flux-icon="" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+  <path fill-rule="evenodd" d="M3 4.25A2.25 2.25 0 0 1 5.25 2h5.5A2.25 2.25 0 0 1 13 4.25v2a.75.75 0 0 1-1.5 0v-2a.75.75 0 0 0-.75-.75h-5.5a.75.75 0 0 0-.75.75v11.5c0 .414.336.75.75.75h5.5a.75.75 0 0 0 .75-.75v-2a.75.75 0 0 1 1.5 0v2A2.25 2.25 0 0 1 10.75 18h-5.5A2.25 2.25 0 0 1 3 15.75V4.25Z" clip-rule="evenodd"></path>
+  <path fill-rule="evenodd" d="M6 10a.75.75 0 0 1 .75-.75h9.546l-1.048-.943a.75.75 0 1 1 1.004-1.114l2.5 2.25a.75.75 0 0 1 0 1.114l-2.5 2.25a.75.75 0 1 1-1.004-1.114l1.048-.943H6.75A.75.75 0 0 1 6 10Z" clip-rule="evenodd"></path>
+</svg>
+
+            
+    Log Out
+    </button>
+                    </form>
+</ui-menu>
+</ui-dropdown>
+</div>
+
+        <!-- Mobile User Menu -->
+                <header class="[grid-area:header] z-10 min-h-14 flex items-center px-6 lg:px-8 lg:hidden" data-flux-header="">
+            <button type="button" class="relative items-center font-medium justify-center gap-2 whitespace-nowrap disabled:opacity-75 dark:disabled:opacity-75 disabled:cursor-default disabled:pointer-events-none h-10 text-sm rounded-lg w-10 inline-flex -ms-2.5 bg-transparent hover:bg-zinc-800/5 dark:hover:bg-white/15 text-zinc-500 hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-white      shrink-0 lg:hidden" data-flux-button="data-flux-button" x-data="" x-on:click="document.body.hasAttribute(&#39;data-show-stashed-sidebar&#39;) ? document.body.removeAttribute(&#39;data-show-stashed-sidebar&#39;) : document.body.setAttribute(&#39;data-show-stashed-sidebar&#39;, &#39;&#39;)" data-flux-sidebar-toggle="data-flux-sidebar-toggle" aria-label="Toggle sidebar">
+        <svg class="shrink-0 [:where(&amp;)]:size-5" data-flux-icon="" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+  <path fill-rule="evenodd" d="M2 6.75A.75.75 0 0 1 2.75 6h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 6.75Zm0 6.5a.75.75 0 0 1 .75-.75h14.5a.75.75 0 0 1 0 1.5H2.75a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd"></path>
+</svg>
+    </button>
+            <div class="flex-1" data-flux-spacer=""></div>
+            
+            <!-- Dark/Light Mode Toggle - Mobile (in header) -->
+            <div x-data="" class="mr-2">
+                <button @click="$flux.appearance = $flux.appearance === &#39;dark&#39; ? &#39;light&#39; : &#39;dark&#39;" class="flex items-center justify-center w-9 h-9 rounded-full transition-colors text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-700 hover:text-zinc-900 dark:hover:text-zinc-100" title="Toggle dark mode">
+                    <!-- Sun icon (shown in dark mode) -->
+                    <svg x-show="$flux.appearance === &#39;dark&#39;" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="display: none;">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                    </svg>
+                    <!-- Moon icon (shown in light mode) -->
+                    <svg x-show="$flux.appearance !== &#39;dark&#39;" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <ui-dropdown position="top end" data-flux-dropdown="">
+    <button type="button" class="group flex items-center rounded-lg has-data-[circle=true]:rounded-full [ui-dropdown&gt;&amp;]:w-full p-1 hover:bg-zinc-800/5 dark:hover:bg-white/10" data-flux-profile="" aria-haspopup="true" aria-controls="lofi-dropdown-f33a42a195e16" aria-expanded="false">
+    <div class="shrink-0">
+                    <div data-flux-avatar="data-flux-avatar" data-slot="avatar" data-size="sm" class="[:where(&amp;)]:size-8 [:where(&amp;)]:text-sm [--avatar-radius:var(--radius-md)] relative flex-none isolate flex items-center justify-center [:where(&amp;)]:font-medium rounded-[var(--avatar-radius)] [:where(&amp;)]:bg-zinc-200 [:where(&amp;)]:dark:bg-zinc-600 [:where(&amp;)]:text-zinc-800 [:where(&amp;)]:dark:text-white  after:absolute after:inset-0 after:inset-ring-[1px] after:inset-ring-black/7 dark:after:inset-ring-white/10 after:rounded-md">
+        <span class="select-none">HN</span>
+    </div>
+            </div>
+
+    
+            <div class="shrink-0 ms-auto size-8 flex justify-center items-center">
+            <svg class="shrink-0 [:where(&amp;)]:size-4 text-zinc-400 dark:text-white/80 group-hover:text-zinc-800 dark:group-hover:text-white" data-flux-icon="" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" data-slot="icon">
+  <path fill-rule="evenodd" d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"></path>
+</svg>
+
+                </div>
+    </button>
+                <ui-menu class="[:where(&amp;)]:min-w-48 p-[.3125rem] rounded-lg shadow-xs border border-zinc-200 dark:border-zinc-600 bg-white dark:bg-zinc-700 focus:outline-hidden" popover="manual" data-flux-menu="" id="lofi-dropdown-f33a42a195e16" role="menu" tabindex="-1">
+    <ui-menu-radio-group data-flux-menu-radio-group="" role="group">
+    <div class="p-0 text-sm font-normal">
+                            <div class="flex items-center gap-2 px-1 py-1.5 text-start text-sm">
+                                <span class="relative flex h-8 w-8 shrink-0 overflow-hidden rounded-lg">
+                                    <span class="flex h-full w-full items-center justify-center rounded-lg bg-neutral-200 text-black dark:bg-neutral-700 dark:text-white">
+                                        HN
+                                    </span>
+                                </span>
+
+                                <div class="grid flex-1 text-start text-sm leading-tight">
+                                    <span class="truncate font-semibold">Helmy Noorhakim</span>
+                                    <span class="truncate text-xs">test2@gmail.com</span>
+                                </div>
+                            </div>
+                        </div>
+</ui-menu-radio-group>
+
+                    <div class="-mx-[.3125rem] my-[.3125rem] h-px" data-flux-menu-separator="">
+    <div data-orientation="horizontal" role="none" class="border-0 [print-color-adjust:exact] bg-zinc-800/15 dark:bg-white/20 h-px w-full dark:bg-zinc-600!" data-flux-separator=""></div>
+</div>
+
+                    <ui-menu-radio-group data-flux-menu-radio-group="" role="group">
+    <a href="http://localhost:8000/settings/profile" class="flex items-center px-2 py-1.5 w-full focus:outline-hidden rounded-md text-start text-sm font-medium [&amp;[disabled]]:opacity-50 text-zinc-800 data-active:bg-zinc-50 dark:text-white dark:data-active:bg-zinc-600 **:data-flux-menu-item-icon:text-zinc-400 dark:**:data-flux-menu-item-icon:text-white/60 [&amp;[data-active]_[data-flux-menu-item-icon]]:text-current" data-flux-menu-item="data-flux-menu-item" data-flux-menu-item-has-icon="data-flux-menu-item-has-icon" wire:navigate="" id="lofi-menu-item-41f6783e737df" role="menuitem" tabindex="-1">
+        <svg class="shrink-0 [:where(&amp;)]:size-5 me-2" data-flux-menu-item-icon="data-flux-menu-item-icon" data-flux-icon="" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+  <path d="M13.024 9.25c.47 0 .827-.433.637-.863a4 4 0 0 0-4.094-2.364c-.468.05-.665.576-.43.984l1.08 1.868a.75.75 0 0 0 .649.375h2.158ZM7.84 7.758c-.236-.408-.79-.5-1.068-.12A3.982 3.982 0 0 0 6 10c0 .884.287 1.7.772 2.363.278.38.832.287 1.068-.12l1.078-1.868a.75.75 0 0 0 0-.75L7.839 7.758ZM9.138 12.993c-.235.408-.039.934.43.984a4 4 0 0 0 4.094-2.364c.19-.43-.168-.863-.638-.863h-2.158a.75.75 0 0 0-.65.375l-1.078 1.868Z"></path>
+  <path fill-rule="evenodd" d="m14.13 4.347.644-1.117a.75.75 0 0 0-1.299-.75l-.644 1.116a6.954 6.954 0 0 0-2.081-.556V1.75a.75.75 0 0 0-1.5 0v1.29a6.954 6.954 0 0 0-2.081.556L6.525 2.48a.75.75 0 1 0-1.3.75l.645 1.117A7.04 7.04 0 0 0 4.347 5.87L3.23 5.225a.75.75 0 1 0-.75 1.3l1.116.644A6.954 6.954 0 0 0 3.04 9.25H1.75a.75.75 0 0 0 0 1.5h1.29c.078.733.27 1.433.556 2.081l-1.116.645a.75.75 0 1 0 .75 1.298l1.117-.644a7.04 7.04 0 0 0 1.523 1.523l-.645 1.117a.75.75 0 1 0 1.3.75l.644-1.116a6.954 6.954 0 0 0 2.081.556v1.29a.75.75 0 0 0 1.5 0v-1.29a6.954 6.954 0 0 0 2.081-.556l.645 1.116a.75.75 0 0 0 1.299-.75l-.645-1.117a7.042 7.042 0 0 0 1.523-1.523l1.117.644a.75.75 0 0 0 .75-1.298l-1.116-.645a6.954 6.954 0 0 0 .556-2.081h1.29a.75.75 0 0 0 0-1.5h-1.29a6.954 6.954 0 0 0-.556-2.081l1.116-.644a.75.75 0 0 0-.75-1.3l-1.117.645a7.04 7.04 0 0 0-1.524-1.523ZM10 4.5a5.475 5.475 0 0 0-2.781.754A5.527 5.527 0 0 0 5.22 7.277 5.475 5.475 0 0 0 4.5 10a5.475 5.475 0 0 0 .752 2.777 5.527 5.527 0 0 0 2.028 2.004c.802.458 1.73.719 2.72.719a5.474 5.474 0 0 0 2.78-.753 5.527 5.527 0 0 0 2.001-2.027c.458-.802.719-1.73.719-2.72a5.475 5.475 0 0 0-.753-2.78 5.528 5.528 0 0 0-2.028-2.002A5.475 5.475 0 0 0 10 4.5Z" clip-rule="evenodd"></path>
+</svg>
+
+            
+    Settings
+    </a>
+</ui-menu-radio-group>
+
+                    <div class="-mx-[.3125rem] my-[.3125rem] h-px" data-flux-menu-separator="">
+    <div data-orientation="horizontal" role="none" class="border-0 [print-color-adjust:exact] bg-zinc-800/15 dark:bg-white/20 h-px w-full dark:bg-zinc-600!" data-flux-separator=""></div>
+</div>
+
+                    <form method="POST" action="http://localhost:8000/logout" class="w-full">
+                        <input type="hidden" name="_token" value="YkhveYyMKwdA09eXtc5sTBI7iojnTjunknRJLiGP" autocomplete="off">                        <button type="submit" class="flex items-center px-2 py-1.5 w-full focus:outline-hidden rounded-md text-start text-sm font-medium [&amp;[disabled]]:opacity-50 text-zinc-800 data-active:bg-zinc-50 dark:text-white dark:data-active:bg-zinc-600 **:data-flux-menu-item-icon:text-zinc-400 dark:**:data-flux-menu-item-icon:text-white/60 [&amp;[data-active]_[data-flux-menu-item-icon]]:text-current w-full" data-flux-menu-item="data-flux-menu-item" data-flux-menu-item-has-icon="data-flux-menu-item-has-icon" id="lofi-menu-item-7a1ae5612d8aa" role="menuitem" tabindex="-1">
+        <svg class="shrink-0 [:where(&amp;)]:size-5 me-2" data-flux-menu-item-icon="data-flux-menu-item-icon" data-flux-icon="" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+  <path fill-rule="evenodd" d="M3 4.25A2.25 2.25 0 0 1 5.25 2h5.5A2.25 2.25 0 0 1 13 4.25v2a.75.75 0 0 1-1.5 0v-2a.75.75 0 0 0-.75-.75h-5.5a.75.75 0 0 0-.75.75v11.5c0 .414.336.75.75.75h5.5a.75.75 0 0 0 .75-.75v-2a.75.75 0 0 1 1.5 0v2A2.25 2.25 0 0 1 10.75 18h-5.5A2.25 2.25 0 0 1 3 15.75V4.25Z" clip-rule="evenodd"></path>
+  <path fill-rule="evenodd" d="M6 10a.75.75 0 0 1 .75-.75h9.546l-1.048-.943a.75.75 0 1 1 1.004-1.114l2.5 2.25a.75.75 0 0 1 0 1.114l-2.5 2.25a.75.75 0 1 1-1.004-1.114l1.048-.943H6.75A.75.75 0 0 1 6 10Z" clip-rule="evenodd"></path>
+</svg>
+
+            
+    Log Out
+    </button>
+                    </form>
+</ui-menu>
+</ui-dropdown>
+    </header>
+        
+        <div wire:snapshot="{&quot;data&quot;:[],&quot;memo&quot;:{&quot;id&quot;:&quot;5aefaVt2dfeuW3KXdgKk&quot;,&quot;name&quot;:&quot;pages.panduan-task&quot;,&quot;path&quot;:&quot;pages\/panduan-task&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;children&quot;:[],&quot;scripts&quot;:[],&quot;assets&quot;:[],&quot;errors&quot;:[],&quot;locale&quot;:&quot;id&quot;},&quot;checksum&quot;:&quot;b861af399fae9d428445abc2af57b53b485f7cf43dda6d26c4dbf70bca693c11&quot;}" wire:effects="{&quot;partials&quot;:[]}" wire:id="5aefaVt2dfeuW3KXdgKk">
+    <!-- Mobile View -->
+    <div class="block sm:hidden">
+            <div class="flex flex-col gap-4 p-4">
+                <!-- Header -->
+                <div class="flex items-center gap-3">
+                    <a href="http://localhost:8000/dashboard" class="p-2 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg">
+                        <svg class="w-5 h-5 text-zinc-600 dark:text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                        </svg>
+                    </a>
+                    <div>
+                        <h1 class="text-xl font-bold text-zinc-900 dark:text-white">Panduan Task</h1>
+                        <p class="text-sm text-zinc-600 dark:text-zinc-400">Cara mengerjakan task dengan benar</p>
+                    </div>
+                </div>
+
+                <!-- Steps -->
+                <div class="space-y-4">
+                    <!--[if BLOCK]><![endif]-->                        <div class="bg-white dark:bg-zinc-800 rounded-xl border border-zinc-200 dark:border-zinc-700 p-4">
+                            <div class="flex items-start gap-3">
+                                <div class="w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg flex items-center justify-center text-white font-bold shrink-0">
+                                    1
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="font-bold text-zinc-900 dark:text-white">Pilih Task yang Sesuai</h3>
+                                    <p class="text-sm text-zinc-600 dark:text-zinc-400 mt-1">Pilih task yang sesuai dengan kemampuan dan waktu Anda. Perhatikan tingkat kesulitan dan estimasi reward.</p>
+                                    
+                                    <div class="mt-3 space-y-2">
+                                        <!--[if BLOCK]><![endif]-->                                            <div class="flex items-start gap-2 text-xs text-zinc-500 dark:text-zinc-400">
+                                                <svg class="w-4 h-4 text-green-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                                </svg>
+                                                <span>Baca deskripsi task dengan teliti</span>
+                                            </div>
+                                                                                    <div class="flex items-start gap-2 text-xs text-zinc-500 dark:text-zinc-400">
+                                                <svg class="w-4 h-4 text-green-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                                </svg>
+                                                <span>Perhatikan deadline yang diberikan</span>
+                                            </div>
+                                                                                    <div class="flex items-start gap-2 text-xs text-zinc-500 dark:text-zinc-400">
+                                                <svg class="w-4 h-4 text-green-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                                </svg>
+                                                <span>Pilih task dengan tingkat kesulitan yang Anda kuasai</span>
+                                            </div>
+                                        <!--[if ENDBLOCK]><![endif]-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                            <div class="bg-white dark:bg-zinc-800 rounded-xl border border-zinc-200 dark:border-zinc-700 p-4">
+                            <div class="flex items-start gap-3">
+                                <div class="w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg flex items-center justify-center text-white font-bold shrink-0">
+                                    2
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="font-bold text-zinc-900 dark:text-white">Ambil Task</h3>
+                                    <p class="text-sm text-zinc-600 dark:text-zinc-400 mt-1">Klik tombol "Ambil Task" untuk memulai mengerjakan. Task akan terkunci selama Anda mengerjakan.</p>
+                                    
+                                    <div class="mt-3 space-y-2">
+                                        <!--[if BLOCK]><![endif]-->                                            <div class="flex items-start gap-2 text-xs text-zinc-500 dark:text-zinc-400">
+                                                <svg class="w-4 h-4 text-green-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                                </svg>
+                                                <span>Pastikan Anda siap mengerjakan sebelum mengambil</span>
+                                            </div>
+                                                                                    <div class="flex items-start gap-2 text-xs text-zinc-500 dark:text-zinc-400">
+                                                <svg class="w-4 h-4 text-green-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                                </svg>
+                                                <span>Anda hanya bisa mengerjakan 1 task aktif</span>
+                                            </div>
+                                                                                    <div class="flex items-start gap-2 text-xs text-zinc-500 dark:text-zinc-400">
+                                                <svg class="w-4 h-4 text-green-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                                </svg>
+                                                <span>Task yang diambil memiliki deadline 3 hari</span>
+                                            </div>
+                                        <!--[if ENDBLOCK]><![endif]-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                            <div class="bg-white dark:bg-zinc-800 rounded-xl border border-zinc-200 dark:border-zinc-700 p-4">
+                            <div class="flex items-start gap-3">
+                                <div class="w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg flex items-center justify-center text-white font-bold shrink-0">
+                                    3
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="font-bold text-zinc-900 dark:text-white">Baca Instruksi</h3>
+                                    <p class="text-sm text-zinc-600 dark:text-zinc-400 mt-1">Baca dan pahami instruksi dengan seksama. Centang checkbox bahwa Anda sudah memahami instruksi.</p>
+                                    
+                                    <div class="mt-3 space-y-2">
+                                        <!--[if BLOCK]><![endif]-->                                            <div class="flex items-start gap-2 text-xs text-zinc-500 dark:text-zinc-400">
+                                                <svg class="w-4 h-4 text-green-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                                </svg>
+                                                <span>Baca instruksi minimal 2x untuk memastikan paham</span>
+                                            </div>
+                                                                                    <div class="flex items-start gap-2 text-xs text-zinc-500 dark:text-zinc-400">
+                                                <svg class="w-4 h-4 text-green-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                                </svg>
+                                                <span>Catat poin-poin penting</span>
+                                            </div>
+                                                                                    <div class="flex items-start gap-2 text-xs text-zinc-500 dark:text-zinc-400">
+                                                <svg class="w-4 h-4 text-green-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                                </svg>
+                                                <span>Jangan ragu bertanya jika ada yang tidak jelas</span>
+                                            </div>
+                                        <!--[if ENDBLOCK]><![endif]-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                            <div class="bg-white dark:bg-zinc-800 rounded-xl border border-zinc-200 dark:border-zinc-700 p-4">
+                            <div class="flex items-start gap-3">
+                                <div class="w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg flex items-center justify-center text-white font-bold shrink-0">
+                                    4
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="font-bold text-zinc-900 dark:text-white">Kerjakan Task</h3>
+                                    <p class="text-sm text-zinc-600 dark:text-zinc-400 mt-1">Kerjakan task sesuai instruksi yang diberikan. Pastikan mengikuti semua langkah dengan benar.</p>
+                                    
+                                    <div class="mt-3 space-y-2">
+                                        <!--[if BLOCK]><![endif]-->                                            <div class="flex items-start gap-2 text-xs text-zinc-500 dark:text-zinc-400">
+                                                <svg class="w-4 h-4 text-green-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                                </svg>
+                                                <span>Ikuti instruksi step by step</span>
+                                            </div>
+                                                                                    <div class="flex items-start gap-2 text-xs text-zinc-500 dark:text-zinc-400">
+                                                <svg class="w-4 h-4 text-green-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                                </svg>
+                                                <span>Jangan skip langkah apapun</span>
+                                            </div>
+                                                                                    <div class="flex items-start gap-2 text-xs text-zinc-500 dark:text-zinc-400">
+                                                <svg class="w-4 h-4 text-green-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                                </svg>
+                                                <span>Dokumentasikan proses pengerjaan</span>
+                                            </div>
+                                        <!--[if ENDBLOCK]><![endif]-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                            <div class="bg-white dark:bg-zinc-800 rounded-xl border border-zinc-200 dark:border-zinc-700 p-4">
+                            <div class="flex items-start gap-3">
+                                <div class="w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg flex items-center justify-center text-white font-bold shrink-0">
+                                    5
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="font-bold text-zinc-900 dark:text-white">Upload Bukti</h3>
+                                    <p class="text-sm text-zinc-600 dark:text-zinc-400 mt-1">Upload bukti pengerjaan berupa screenshot atau foto. Bukti harus jelas dan sesuai dengan yang diminta.</p>
+                                    
+                                    <div class="mt-3 space-y-2">
+                                        <!--[if BLOCK]><![endif]-->                                            <div class="flex items-start gap-2 text-xs text-zinc-500 dark:text-zinc-400">
+                                                <svg class="w-4 h-4 text-green-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                                </svg>
+                                                <span>Pastikan screenshot jelas dan tidak blur</span>
+                                            </div>
+                                                                                    <div class="flex items-start gap-2 text-xs text-zinc-500 dark:text-zinc-400">
+                                                <svg class="w-4 h-4 text-green-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                                </svg>
+                                                <span>Ambil screenshot sesuai yang diminta</span>
+                                            </div>
+                                                                                    <div class="flex items-start gap-2 text-xs text-zinc-500 dark:text-zinc-400">
+                                                <svg class="w-4 h-4 text-green-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                                </svg>
+                                                <span>Pastikan semua elemen penting terlihat</span>
+                                            </div>
+                                        <!--[if ENDBLOCK]><![endif]-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                            <div class="bg-white dark:bg-zinc-800 rounded-xl border border-zinc-200 dark:border-zinc-700 p-4">
+                            <div class="flex items-start gap-3">
+                                <div class="w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg flex items-center justify-center text-white font-bold shrink-0">
+                                    6
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="font-bold text-zinc-900 dark:text-white">Tunggu Verifikasi</h3>
+                                    <p class="text-sm text-zinc-600 dark:text-zinc-400 mt-1">Admin akan memverifikasi bukti Anda. Proses verifikasi biasanya memakan waktu 1-24 jam.</p>
+                                    
+                                    <div class="mt-3 space-y-2">
+                                        <!--[if BLOCK]><![endif]-->                                            <div class="flex items-start gap-2 text-xs text-zinc-500 dark:text-zinc-400">
+                                                <svg class="w-4 h-4 text-green-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                                </svg>
+                                                <span>Sabar menunggu proses verifikasi</span>
+                                            </div>
+                                                                                    <div class="flex items-start gap-2 text-xs text-zinc-500 dark:text-zinc-400">
+                                                <svg class="w-4 h-4 text-green-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                                </svg>
+                                                <span>Cek status task secara berkala</span>
+                                            </div>
+                                                                                    <div class="flex items-start gap-2 text-xs text-zinc-500 dark:text-zinc-400">
+                                                <svg class="w-4 h-4 text-green-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                                </svg>
+                                                <span>Jika ada revisi, segera perbaiki</span>
+                                            </div>
+                                        <!--[if ENDBLOCK]><![endif]-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <!--[if ENDBLOCK]><![endif]-->
+                </div>
+
+                <!-- CTA -->
+                <div class="bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl p-4 text-white">
+                    <h3 class="font-bold text-lg">Siap Mulai?</h3>
+                    <p class="text-sm opacity-90 mt-1">Temukan task yang cocok untuk Anda dan mulai dapatkan reward!</p>
+                    <a href="http://localhost:8000/user/dashboard" class="mt-3 inline-flex items-center gap-2 px-4 py-2 bg-white text-green-600 font-semibold rounded-lg hover:bg-green-50 transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                        </svg>
+                        Lihat Task Tersedia
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Desktop View -->
+        <div class="hidden sm:block">
+            <div class="flex flex-col gap-6 p-6">
+                <!-- Header -->
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h1 class="text-3xl font-bold text-zinc-900 dark:text-white">Panduan Task</h1>
+                        <p class="text-zinc-600 dark:text-zinc-400 mt-1">Ikuti langkah-langkah berikut untuk mengerjakan task dengan benar</p>
+                    </div>
+                    <a href="http://localhost:8000/user/dashboard" class="inline-flex items-center gap-2 px-4 py-2 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                        </svg>
+                        Lihat Task
+                    </a>
+                </div>
+
+                <!-- Steps Timeline -->
+                <div class="relative">
+                    <!-- Timeline Line -->
+                    <div class="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-green-500 to-emerald-600"></div>
+                    
+                    <div class="space-y-6">
+                        <!--[if BLOCK]><![endif]-->                            <div class="relative flex gap-6">
+                                <!-- Step Number -->
+                                <div class="relative z-10 w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg">
+                                    1
+                                </div>
+                                
+                                <!-- Step Content -->
+                                <div class="flex-1 bg-white dark:bg-zinc-800 rounded-xl border border-zinc-200 dark:border-zinc-700 p-6 hover:shadow-lg transition-shadow">
+                                    <h3 class="text-xl font-bold text-zinc-900 dark:text-white">Pilih Task yang Sesuai</h3>
+                                    <p class="text-zinc-600 dark:text-zinc-400 mt-2">Pilih task yang sesuai dengan kemampuan dan waktu Anda. Perhatikan tingkat kesulitan dan estimasi reward.</p>
+                                    
+                                    <div class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-3">
+                                        <!--[if BLOCK]><![endif]-->                                            <div class="flex items-start gap-2 p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                                                <svg class="w-5 h-5 text-green-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                                </svg>
+                                                <span class="text-sm text-zinc-700 dark:text-zinc-300">Baca deskripsi task dengan teliti</span>
+                                            </div>
+                                                                                    <div class="flex items-start gap-2 p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                                                <svg class="w-5 h-5 text-green-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                                </svg>
+                                                <span class="text-sm text-zinc-700 dark:text-zinc-300">Perhatikan deadline yang diberikan</span>
+                                            </div>
+                                                                                    <div class="flex items-start gap-2 p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                                                <svg class="w-5 h-5 text-green-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                                </svg>
+                                                <span class="text-sm text-zinc-700 dark:text-zinc-300">Pilih task dengan tingkat kesulitan yang Anda kuasai</span>
+                                            </div>
+                                        <!--[if ENDBLOCK]><![endif]-->
+                                    </div>
+                                </div>
+                            </div>
+                                                    <div class="relative flex gap-6">
+                                <!-- Step Number -->
+                                <div class="relative z-10 w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg">
+                                    2
+                                </div>
+                                
+                                <!-- Step Content -->
+                                <div class="flex-1 bg-white dark:bg-zinc-800 rounded-xl border border-zinc-200 dark:border-zinc-700 p-6 hover:shadow-lg transition-shadow">
+                                    <h3 class="text-xl font-bold text-zinc-900 dark:text-white">Ambil Task</h3>
+                                    <p class="text-zinc-600 dark:text-zinc-400 mt-2">Klik tombol "Ambil Task" untuk memulai mengerjakan. Task akan terkunci selama Anda mengerjakan.</p>
+                                    
+                                    <div class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-3">
+                                        <!--[if BLOCK]><![endif]-->                                            <div class="flex items-start gap-2 p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                                                <svg class="w-5 h-5 text-green-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                                </svg>
+                                                <span class="text-sm text-zinc-700 dark:text-zinc-300">Pastikan Anda siap mengerjakan sebelum mengambil</span>
+                                            </div>
+                                                                                    <div class="flex items-start gap-2 p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                                                <svg class="w-5 h-5 text-green-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                                </svg>
+                                                <span class="text-sm text-zinc-700 dark:text-zinc-300">Anda hanya bisa mengerjakan 1 task aktif</span>
+                                            </div>
+                                                                                    <div class="flex items-start gap-2 p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                                                <svg class="w-5 h-5 text-green-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                                </svg>
+                                                <span class="text-sm text-zinc-700 dark:text-zinc-300">Task yang diambil memiliki deadline 3 hari</span>
+                                            </div>
+                                        <!--[if ENDBLOCK]><![endif]-->
+                                    </div>
+                                </div>
+                            </div>
+                                                    <div class="relative flex gap-6">
+                                <!-- Step Number -->
+                                <div class="relative z-10 w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg">
+                                    3
+                                </div>
+                                
+                                <!-- Step Content -->
+                                <div class="flex-1 bg-white dark:bg-zinc-800 rounded-xl border border-zinc-200 dark:border-zinc-700 p-6 hover:shadow-lg transition-shadow">
+                                    <h3 class="text-xl font-bold text-zinc-900 dark:text-white">Baca Instruksi</h3>
+                                    <p class="text-zinc-600 dark:text-zinc-400 mt-2">Baca dan pahami instruksi dengan seksama. Centang checkbox bahwa Anda sudah memahami instruksi.</p>
+                                    
+                                    <div class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-3">
+                                        <!--[if BLOCK]><![endif]-->                                            <div class="flex items-start gap-2 p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                                                <svg class="w-5 h-5 text-green-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                                </svg>
+                                                <span class="text-sm text-zinc-700 dark:text-zinc-300">Baca instruksi minimal 2x untuk memastikan paham</span>
+                                            </div>
+                                                                                    <div class="flex items-start gap-2 p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                                                <svg class="w-5 h-5 text-green-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                                </svg>
+                                                <span class="text-sm text-zinc-700 dark:text-zinc-300">Catat poin-poin penting</span>
+                                            </div>
+                                                                                    <div class="flex items-start gap-2 p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                                                <svg class="w-5 h-5 text-green-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                                </svg>
+                                                <span class="text-sm text-zinc-700 dark:text-zinc-300">Jangan ragu bertanya jika ada yang tidak jelas</span>
+                                            </div>
+                                        <!--[if ENDBLOCK]><![endif]-->
+                                    </div>
+                                </div>
+                            </div>
+                                                    <div class="relative flex gap-6">
+                                <!-- Step Number -->
+                                <div class="relative z-10 w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg">
+                                    4
+                                </div>
+                                
+                                <!-- Step Content -->
+                                <div class="flex-1 bg-white dark:bg-zinc-800 rounded-xl border border-zinc-200 dark:border-zinc-700 p-6 hover:shadow-lg transition-shadow">
+                                    <h3 class="text-xl font-bold text-zinc-900 dark:text-white">Kerjakan Task</h3>
+                                    <p class="text-zinc-600 dark:text-zinc-400 mt-2">Kerjakan task sesuai instruksi yang diberikan. Pastikan mengikuti semua langkah dengan benar.</p>
+                                    
+                                    <div class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-3">
+                                        <!--[if BLOCK]><![endif]-->                                            <div class="flex items-start gap-2 p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                                                <svg class="w-5 h-5 text-green-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                                </svg>
+                                                <span class="text-sm text-zinc-700 dark:text-zinc-300">Ikuti instruksi step by step</span>
+                                            </div>
+                                                                                    <div class="flex items-start gap-2 p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                                                <svg class="w-5 h-5 text-green-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                                </svg>
+                                                <span class="text-sm text-zinc-700 dark:text-zinc-300">Jangan skip langkah apapun</span>
+                                            </div>
+                                                                                    <div class="flex items-start gap-2 p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                                                <svg class="w-5 h-5 text-green-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                                </svg>
+                                                <span class="text-sm text-zinc-700 dark:text-zinc-300">Dokumentasikan proses pengerjaan</span>
+                                            </div>
+                                        <!--[if ENDBLOCK]><![endif]-->
+                                    </div>
+                                </div>
+                            </div>
+                                                    <div class="relative flex gap-6">
+                                <!-- Step Number -->
+                                <div class="relative z-10 w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg">
+                                    5
+                                </div>
+                                
+                                <!-- Step Content -->
+                                <div class="flex-1 bg-white dark:bg-zinc-800 rounded-xl border border-zinc-200 dark:border-zinc-700 p-6 hover:shadow-lg transition-shadow">
+                                    <h3 class="text-xl font-bold text-zinc-900 dark:text-white">Upload Bukti</h3>
+                                    <p class="text-zinc-600 dark:text-zinc-400 mt-2">Upload bukti pengerjaan berupa screenshot atau foto. Bukti harus jelas dan sesuai dengan yang diminta.</p>
+                                    
+                                    <div class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-3">
+                                        <!--[if BLOCK]><![endif]-->                                            <div class="flex items-start gap-2 p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                                                <svg class="w-5 h-5 text-green-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                                </svg>
+                                                <span class="text-sm text-zinc-700 dark:text-zinc-300">Pastikan screenshot jelas dan tidak blur</span>
+                                            </div>
+                                                                                    <div class="flex items-start gap-2 p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                                                <svg class="w-5 h-5 text-green-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                                </svg>
+                                                <span class="text-sm text-zinc-700 dark:text-zinc-300">Ambil screenshot sesuai yang diminta</span>
+                                            </div>
+                                                                                    <div class="flex items-start gap-2 p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                                                <svg class="w-5 h-5 text-green-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                                </svg>
+                                                <span class="text-sm text-zinc-700 dark:text-zinc-300">Pastikan semua elemen penting terlihat</span>
+                                            </div>
+                                        <!--[if ENDBLOCK]><![endif]-->
+                                    </div>
+                                </div>
+                            </div>
+                                                    <div class="relative flex gap-6">
+                                <!-- Step Number -->
+                                <div class="relative z-10 w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg">
+                                    6
+                                </div>
+                                
+                                <!-- Step Content -->
+                                <div class="flex-1 bg-white dark:bg-zinc-800 rounded-xl border border-zinc-200 dark:border-zinc-700 p-6 hover:shadow-lg transition-shadow">
+                                    <h3 class="text-xl font-bold text-zinc-900 dark:text-white">Tunggu Verifikasi</h3>
+                                    <p class="text-zinc-600 dark:text-zinc-400 mt-2">Admin akan memverifikasi bukti Anda. Proses verifikasi biasanya memakan waktu 1-24 jam.</p>
+                                    
+                                    <div class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-3">
+                                        <!--[if BLOCK]><![endif]-->                                            <div class="flex items-start gap-2 p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                                                <svg class="w-5 h-5 text-green-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                                </svg>
+                                                <span class="text-sm text-zinc-700 dark:text-zinc-300">Sabar menunggu proses verifikasi</span>
+                                            </div>
+                                                                                    <div class="flex items-start gap-2 p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                                                <svg class="w-5 h-5 text-green-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                                </svg>
+                                                <span class="text-sm text-zinc-700 dark:text-zinc-300">Cek status task secara berkala</span>
+                                            </div>
+                                                                                    <div class="flex items-start gap-2 p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                                                <svg class="w-5 h-5 text-green-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                                </svg>
+                                                <span class="text-sm text-zinc-700 dark:text-zinc-300">Jika ada revisi, segera perbaiki</span>
+                                            </div>
+                                        <!--[if ENDBLOCK]><![endif]-->
+                                    </div>
+                                </div>
+                            </div>
+                        <!--[if ENDBLOCK]><![endif]-->
+                    </div>
+                </div>
+
+                <!-- Bottom CTA -->
+                <div class="bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl p-6 text-white flex items-center justify-between">
+                    <div>
+                        <h3 class="font-bold text-2xl">Siap untuk Memulai?</h3>
+                        <p class="opacity-90 mt-1">Temukan task yang cocok untuk Anda dan mulai dapatkan reward sekarang!</p>
+                    </div>
+                    <a href="http://localhost:8000/user/dashboard" class="inline-flex items-center gap-2 px-6 py-3 bg-white text-green-600 font-bold rounded-lg hover:bg-green-50 transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                        </svg>
+                        Lihat Task Tersedia
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+        
+        <script src="./CuanInstan_files/flux.js.download" data-navigate-once=""></script>
+    
+    
+
+</body></html>

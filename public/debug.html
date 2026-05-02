@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Debug Task Wizard</title>
+    <style>
+        body { font-family: monospace; padding: 20px; background: #1e1e1e; color: #d4d4d4; }
+        .info { color: #4ec9b0; }
+        .warning { color: #ce9178; }
+        .error { color: #f48771; }
+        pre { background: #252526; padding: 10px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>🔍 Task Wizard Debug Info</h1>
+    
+    <div class="info">
+        <h2>Current Time: <?= date('Y-m-d H:i:s') ?></h2>
+    </div>
+    
+    <h3>Browser Console Instructions:</h3>
+    <pre>
+1. Open browser DevTools (F12)
+2. Go to Console tab
+3. Monitor for errors or repeated logs
+4. Check Network tab for repeated requests
+    </pre>
+    
+    <h3>Manual Test Steps:</h3>
+    <ol>
+        <li>Click this link: <a href="http://localhost:8000/user/task/1/work" target="_blank" style="color: #569cd6;">Open Task Wizard</a></li>
+        <li>Open DevTools Console (F12)</li>
+        <li>Watch for continuous page reloads or network requests</li>
+        <li>Check if timer is counting down correctly</li>
+    </ol>
+    
+    <h3>Expected Behavior:</h3>
+    <ul>
+        <li>✅ Page loads ONCE</li>
+        <li>✅ Timer shows ~8-9 minutes remaining</li>
+        <li>✅ NO continuous reloading</li>
+        <li>✅ Can navigate between steps</li>
+    </ul>
+    
+    <script>
+        console.log('%c🔍 Debug Page Loaded', 'color: #4ec9b0; font-size: 16px;');
+        console.log('Current time:', new Date().toLocaleString());
+    </script>
+</body>
+</html>

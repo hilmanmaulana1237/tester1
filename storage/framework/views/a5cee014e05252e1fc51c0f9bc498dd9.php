@@ -1,0 +1,1 @@
+<?php echo app('Illuminate\Foundation\Vite')("resources/js/app.js"); ?><?php /**PATH C:\laragon\www\baru\storage\framework\views/e707339c3b84dd4f15dd557ab7a918f7.blade.php ENDPATH**/ ?>

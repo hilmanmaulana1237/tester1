@@ -1,0 +1,30 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Circle with Gradient -->
+  <circle cx="100" cy="100" r="95" fill="url(#purpleGradient)"/>
+  
+  <!-- Checkmark/Task Symbol -->
+  <g transform="translate(50, 60)">
+    <!-- Paper/Document Background -->
+    <rect x="10" y="0" width="80" height="90" rx="8" fill="white" opacity="0.95"/>
+    
+    <!-- Checkmark Lines -->
+    <path d="M25 35 L40 50 L70 20" stroke="#7C3AED" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    
+    <!-- Money Symbol (Rp) -->
+    <text x="45" y="78" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#7C3AED" text-anchor="middle">Rp</text>
+  </g>
+  
+  <!-- Decorative Coins -->
+  <circle cx="160" cy="50" r="12" fill="#A78BFA" opacity="0.8"/>
+  <circle cx="170" cy="70" r="10" fill="#C4B5FD" opacity="0.8"/>
+  <circle cx="30" cy="160" r="12" fill="#A78BFA" opacity="0.8"/>
+  <circle cx="45" cy="175" r="10" fill="#C4B5FD" opacity="0.8"/>
+  
+  <!-- Gradient Definition -->
+  <defs>
+    <linearGradient id="purpleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7C3AED;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#9333EA;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+</svg>
