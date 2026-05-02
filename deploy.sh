@@ -9,7 +9,7 @@ if [[ -n "${DEPLOY_ENV_FILE}" && -f "${DEPLOY_ENV_FILE}" ]]; then
     source "${DEPLOY_ENV_FILE}"
 fi
 
-REPO_URL="${REPO_URL:-git@github.com:hilmanmaulana1237/baru.git}"
+REPO_URL="${REPO_URL:-https://github.com/hilmanmaulana1237/baru.git}"
 BRANCH="${BRANCH:-main}"
 APP_DIR="${APP_DIR:-/var/www/baru}"
 WEB_USER="${WEB_USER:-www-data}"
@@ -34,7 +34,7 @@ Usage:
 
 Optional env vars:
   DEPLOY_ENV_FILE=/etc/baru-deploy.env
-  REPO_URL=git@github.com:hilmanmaulana1237/baru.git
+    REPO_URL=https://github.com/hilmanmaulana1237/baru.git
   BRANCH=main
   APP_DIR=/var/www/baru
   WEB_USER=www-data
